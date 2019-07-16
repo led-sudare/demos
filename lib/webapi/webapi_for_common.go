@@ -2,7 +2,6 @@ package webapi
 
 import (
 	"bytes"
-	"demos/lib/util"
 	"encoding/json"
 	"fmt"
 	"net/http"
@@ -18,7 +17,7 @@ type WebAPICtrl interface {
 }
 
 func SetUpWebAPIforCommon(controller WebAPICtrl) {
-	http.Handle("/api/config", util.NewCORSHandler(
+	http.Handle("/api/config", NewCORSHandler(
 		func(w http.ResponseWriter, r *http.Request) {
 			switch r.Method {
 			case "POST":
@@ -35,7 +34,7 @@ func SetUpWebAPIforCommon(controller WebAPICtrl) {
 				http.Error(w, "Not implemented.", http.StatusNotFound)
 			}
 		}))
-	http.Handle("/api/hello", util.NewCORSHandler(
+	http.Handle("/api/hello", NewCORSHandler(
 		func(w http.ResponseWriter, r *http.Request) {
 			switch r.Method {
 			case "GET":
@@ -44,7 +43,7 @@ func SetUpWebAPIforCommon(controller WebAPICtrl) {
 				http.Error(w, "Not implemented.", http.StatusNotFound)
 			}
 		}))
-	http.Handle("/api/status", util.NewCORSHandler(
+	http.Handle("/api/status", NewCORSHandler(
 		func(w http.ResponseWriter, r *http.Request) {
 			switch r.Method {
 			case "GET":

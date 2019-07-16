@@ -16,14 +16,14 @@ import (
 )
 
 type Configs struct {
-	Proxy   string `json:"Proxy"`
-	Adapter string `json:"Adapter"`
+	XProxySubBind  string `json:"XProxySubBind"`
+	AdapterSubBind string `json:"AdapterSubBind"`
 }
 
 func NewConfigs() Configs {
 	return Configs{
-		Proxy:   "0.0.0.0:5510",
-		Adapter: "0.0.0.0:5520",
+		XProxySubBind:  "0.0.0.0:5510",
+		AdapterSubBind: "0.0.0.0:5520",
 	}
 }
 
@@ -169,15 +169,16 @@ func (w *WebAPICtrlImpl) Enable(enable bool) {
 	}
 }
 func (w *WebAPICtrlImpl) IsEnable() bool {
-	return true
+	return w.isEnable
 }
+
 func main() {
 	configs := NewConfigs()
 	util.ReadConfig(&configs)
 
 	var (
-		proxyAddr   = flag.String("p", configs.Proxy, "Specify IP and port of XSUB-XPUB server.")
-		adapterAddr = flag.String("a", configs.Adapter, "Specify IP and port of Adapter server.")
+		proxyAddr   = flag.String("p", configs.XProxySubBind, "Specify IP and port of XSUB-XPUB server.")
+		adapterAddr = flag.String("a", configs.AdapterSubBind, "Specify IP and port of Adapter server.")
 	)
 	flag.Parse()
 	enable := make(chan bool)
