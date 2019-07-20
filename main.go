@@ -180,13 +180,14 @@ func main() {
 		proxyAddr   = flag.String("p", configs.XProxySubBind, "Specify IP and port of XSUB-XPUB server.")
 		adapterAddr = flag.String("a", configs.AdapterSubBind, "Specify IP and port of Adapter server.")
 	)
+
 	flag.Parse()
 	enable := make(chan bool)
 	controller := NewWebAPICtrlImpl(enable)
 
 	demos := NewDemos([]*Demo{
 		NewDemo("./moridemo/moridemo", strings.Split(*adapterAddr, ":")),
-		NewDemo("./sudare_contents/sudare_contents", []string{*proxyAddr}),
+		NewDemo("./sudare_contents/sudare_contents", []string{"-r", *proxyAddr}),
 	})
 
 	go doDo(demos, enable)

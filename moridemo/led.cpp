@@ -52,8 +52,8 @@ int InitSdk(char const *url, char const *port)
   {
     std::cout << "ZMQ Pub: " << target << " start." << std::endl;
   }
-  uint64_t hwm = 1;
-  zmq_setsockopt(zmqSock, ZMQ_SNDHWM, &hwm, sizeof(hwm));
+  //uint64_t hwm = 1;
+  //zmq_setsockopt(zmqSock, ZMQ_SNDHWM, &hwm, sizeof(hwm));
   if (zmq_connect(zmqSock, target.c_str()))
   {
     std::cerr << "zmq_connect " << strerror(errno) << std::endl;
