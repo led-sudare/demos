@@ -73,7 +73,7 @@ func (c *Cylinder) GetData() []byte {
 	util.ConcurrentEnum(0, CylinderCount, func(i int) {
 		for x := 0; x < CylinderRadius; x++ {
 			for y := 0; y < CylinderHeight; y++ {
-				idx565 := (i*CylinderHeight*CylinderRadius + CylinderRadius*y + x) * 2
+				idx565 := ((i * CylinderRadius + x) * CylinderHeight + y) * 2
 				//				log.Info(idx565)
 				r, g, b, _ := c.images[i].At(x, y).RGBA()
 				c.rawData[idx565+0] = byte(r)&0xF8 + byte(g)>>5
