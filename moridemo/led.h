@@ -1,8 +1,8 @@
 #pragma once
 
-#define LED_WIDTH 15
-#define LED_HEIGHT 50
-#define LED_DEPTH 15
+#define LED_WIDTH 30
+#define LED_HEIGHT 100
+#define LED_DEPTH 30
 
 #ifdef __cplusplus
 extern "C"
