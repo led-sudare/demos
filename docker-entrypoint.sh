@@ -3,7 +3,7 @@
 echo "*** docker-entorypoint.sh Start... ***"
 cname=`cat ./cname`
 cd moridemo
-make clean
+rm ./moridemo
 make
 
 cd ../sudare_contents
