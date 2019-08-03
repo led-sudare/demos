@@ -36,6 +36,7 @@ func main() {
 
 	sender := content.NewContentSender(endpoint)
 	contents := []content.CylinderContent{
+		content.NewContentSinSinWideLine(),
 		content.NewContentSinWideLine(),
 		content.NewContentSinLine(),
 		content.NewContentCirWave(),

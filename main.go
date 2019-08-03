@@ -10,6 +10,7 @@ import (
 	"net/http"
 	"os"
 	"os/exec"
+
 	"strings"
 
 	log "github.com/cihub/seelog"
@@ -132,7 +133,7 @@ func (d *Demos) RunDemos(enable <-chan bool) {
 	}
 }
 
-func doDo(demos *Demos, enable <-chan bool) {
+func doDemos(demos *Demos, enable <-chan bool) {
 	e := true
 	for {
 		if e {
@@ -181,6 +182,8 @@ func main() {
 		adapterAddr = flag.String("a", configs.AdapterSubBind, "Specify IP and port of Adapter server.")
 	)
 
+	log.Infof("Xproxy: %v, Adapter %v", *proxyAddr, *adapterAddr)
+
 	flag.Parse()
 	enable := make(chan bool)
 	controller := NewWebAPICtrlImpl(enable)
@@ -190,7 +193,7 @@ func main() {
 		NewDemo("./sudare_contents/sudare_contents", []string{"-r", *proxyAddr}),
 	})
 
-	go doDo(demos, enable)
+	go doDemos(demos, enable)
 	webapi.SetUpWebAPIforCommon(controller)
 
 	log.Info("Http Server 5003 Start")

@@ -798,7 +798,7 @@ int main(int argc, const char *argv[])
   spiral();
   cube();
   fireworks();
-  brown();
+  //brown();
   sphere();
 
   DeinitSdk();

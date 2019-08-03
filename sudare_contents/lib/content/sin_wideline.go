@@ -58,11 +58,12 @@ func (c *ContentSinWideLine) GetFrame() []byte {
 			unit := (2 * math.Pi) / lib.CylinderCount
 
 			wave := math.Sin(float64(i)*unit+lined.count) * lined.height
+			width := ((math.Sin(float64(lined.y/10))+1) /2) * 15
 
 			//			color := util.GetRainbow((colordepth + 1) / 2)
 			color := util.GetRainbow(lined.colorh)
 			gc.SetStrokeColor(color)
-			gc.SetLineWidth(5)
+			gc.SetLineWidth(width)
 
 			gc.MoveTo(15, lined.y-wave) // should always be called first for a new path
 			gc.LineTo(15, lined.y+wave)
